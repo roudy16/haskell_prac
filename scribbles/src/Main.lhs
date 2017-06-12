@@ -1,17 +1,18 @@
 \begin{code}
 module Main where
 
-import Graphics.UI.GLUT
-import Bindings
+import qualified Graphics.UI.GLUT as GLUT
+import qualified Bindings as BND
+import qualified Display as DSP
 
 
 main :: IO()
 main = do
-    (_progName, _args) <- getArgsAndInitialize
-    _window <- createWindow "Hello World"
-    displayCallback $= display
-    reshapeCallback $= Just reshape
-    keyboardMouseCallback $= Just keyboardMouse
-    mainLoop
+    (_progName, _args) <- GLUT.getArgsAndInitialize
+    _window <- GLUT.createWindow "Hello World"
+    GLUT.displayCallback GLUT.$= DSP.display
+    GLUT.reshapeCallback GLUT.$= Just BND.reshape
+    GLUT.keyboardMouseCallback GLUT.$= Just BND.keyboardMouse
+    GLUT.mainLoop
 
 \end{code}
