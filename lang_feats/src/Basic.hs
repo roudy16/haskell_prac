@@ -46,3 +46,17 @@ filter' p (x:xs)
 
 isLowerAlpha :: Char -> Bool
 isLowerAlpha = (`elem` ['a'..'z'])
+
+-- This could be useful for partial application
+flip' :: (a -> b -> c) -> (b -> a -> c)
+flip' f = g
+    where g x y = f y x
+
+shout :: [String] -> [String]
+shout words = map excite words
+    where excite str = str ++ "!"
+
+askShout :: [String] -> [String]
+askShout words = map (query . excite) words
+    where query str = str ++ "?"
+          excite str = str ++ "!"
